@@ -119,6 +119,19 @@ abstract class AbstractDbMapper extends EventProvider
         return $resultSet;
     }
 
+   /**
+     * @return array
+     */
+	public function getAll()
+	{
+		$dbresult = $this->select($this->getSelect());
+		$result = array();
+		while($dbresult && $entity = $dbresult->current()) {
+			$result[] = $entity;
+		}
+		return $result;
+	}
+
     /**
      * @param object|array $entity
      * @param string|TableIdentifier|null $tableName
